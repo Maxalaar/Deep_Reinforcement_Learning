@@ -1,11 +1,11 @@
 from abc import ABC, abstractmethod
 from typing import Dict
 
-import gym
+import gymnasium
 import numpy as np
 
 
-class Environment(gym.Env, ABC):
+class Environment(gymnasium.Env, ABC):
     def __init__(self):
         super().__init__()
         super(ABC, self).__init__()

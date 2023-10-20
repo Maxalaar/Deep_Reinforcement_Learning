@@ -10,7 +10,7 @@ from policy.random import Random
 from policy.max_state_action_function import MaxStateActionFunction
 
 if __name__ == '__main__':
-    map_size = (3, 3)
+    map_size = (6, 6)
     max_steps = 10
     render_configuration = {
         'window_size': ([element * 130 for element in map_size]),
@@ -37,7 +37,7 @@ if __name__ == '__main__':
         environment.observation_space,
         environment.action_space,
         action_value_function,
-        0.0,
+        0.05,
     )
 
     deep_q_network: DeepQNetwork = DeepQNetwork(
@@ -49,8 +49,8 @@ if __name__ == '__main__':
 
     deep_q_network.learning(
         1000,
+        10,
         1,
-        None,
     )
     print(model)
 
