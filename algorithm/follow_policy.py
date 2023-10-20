@@ -18,14 +18,16 @@ def follow_policy(environment: Environment, policy: Policy, initial_action: Opti
         action = policy.compute_action(observation)
 
     while continue_follow_policy:
-        observation, reward, terminated, _, information = environment.step(action)
         if render_environment:
             environment.render()
+        observation, reward, terminated, _, information = environment.step(action)
         sum_reward += (discount_rate ** current_step) * reward
         current_step += 1
         action = policy.compute_action(observation)
 
         if terminated or (number_steps is not None and current_step >= number_steps):
+            if render_environment:
+                environment.render()
             continue_follow_policy = False
 
     return sum_reward

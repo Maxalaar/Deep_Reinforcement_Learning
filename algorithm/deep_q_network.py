@@ -32,22 +32,22 @@ class DeepQNetwork:
 
     def _compute_estimation_action_value(
             self,
-            state: Dict[str, np.ndarray],
-            action: ActType,
+            initial_state: Dict[str, np.ndarray],
+            initial_action: ActType,
             sample_size: int = 1,
             depth_temporal_difference: Optional[int] = None
     ) -> float:
         sum_estimation_sample: float = 0
-        for i in range(sample_size):
-            self._environment.reset(seed=None, options={'configuration': state})
-            sum_estimation_sample += follow_policy(environment=self._environment, policy=self._policy, initial_action=action, number_steps=depth_temporal_difference, discount_rate=self._discount_rate)
+        for i in range(0, sample_size):
+            self._environment.reset(seed=None, options={'configuration': initial_state})
+            sum_estimation_sample += follow_policy(environment=self._environment, policy=self._policy, initial_action=initial_action, number_steps=depth_temporal_difference, discount_rate=self._discount_rate)
 
             if not self._environment.is_terminated():
                 observation = self._environment.observation()
                 action = self._policy.compute_action(observation)
                 sum_estimation_sample += (self._discount_rate**depth_temporal_difference) * self._action_value_function.predict_value(observation, action)
 
-        estimation_action_value = sum_estimation_sample / sample_size
+        estimation_action_value = sum_estimation_sample / float(sample_size)
         return estimation_action_value
 
 

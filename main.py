@@ -10,14 +10,16 @@ from policy.random import Random
 from policy.max_state_action_function import MaxStateActionFunction
 
 if __name__ == '__main__':
+    map_size = (3, 3)
+    max_steps = 10
     render_configuration = {
-        'window_size': 500,
+        'window_size': ([element * 130 for element in map_size]),
         'fps': 5,
     }
 
     environment: Environment = GridWorld(
-        3,
-        20,
+        map_size,
+        max_steps,
         render_configuration,
     )
 
@@ -46,11 +48,12 @@ if __name__ == '__main__':
     )
 
     deep_q_network.learning(
-        10000,
-        100,
+        1000,
         1,
+        None,
     )
     print(model)
+
     print('len : ' + str(len(model._dictionary)))
     number_zero = 0
     for key in model._dictionary:
@@ -61,5 +64,5 @@ if __name__ == '__main__':
     for i in range(0, 1000):
         environment.reset()
         max_q_function_policy._exploration_rate = 0
-        print(follow_policy(environment, max_q_function_policy, render_environment=True))
+        print(follow_policy(environment, max_q_function_policy, render_environment=True, discount_rate=1))
 
