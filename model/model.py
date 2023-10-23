@@ -6,9 +6,13 @@ class Model(ABC):
         pass
 
     @abstractmethod
-    def add_data(self, data_key, data_value):
+    def create(self, inpout_dimension, output_dimension):
         pass
 
     @abstractmethod
-    def get_data(self, data_key) -> float:
+    def add_data(self, value_input, value_output):
+        pass
+
+    @abstractmethod
+    def get_data(self, value_input) -> float:
         pass

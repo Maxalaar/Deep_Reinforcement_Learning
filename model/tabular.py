@@ -14,15 +14,21 @@ class Tabular(Model):
         self._dictionary = {}
         self._default_value = default_value
 
-    def add_data(self, data_key, data_value):
-        self._dictionary[convert_data_key(data_key)] = data_value
+    def create(self, inpout_dimension, output_dimension):
+        pass
 
-    def get_data(self, data_key) -> float:
-        data_key = convert_data_key(data_key)
+    def add_data(self, value_input, value_output):
+        self._dictionary[convert_data_key(value_input)] = value_output
+
+    def get_data(self, value_input) -> float:
+        data_key = convert_data_key(value_input)
         if data_key in self._dictionary:
-            return self._dictionary[data_key]
+            return self._dictionary[data_key][0]
         else:
             return self._default_value
+
+    def __len__(self):
+        return len(self._dictionary)
 
     def __str__(self):
         return pprint.pformat(self._dictionary)

@@ -1,14 +1,14 @@
-from typing import Optional, List, Dict
+from typing import Optional, Dict
 import numpy as np
-from gymnasium.core import ObsType, ActType
+from gymnasium.core import ActType
 
 from algorithm.follow_policy import follow_policy
-from algorithm.value_function.action_value_function import ActionValueFunction
+from value_function.action_value_function import ActionValueFunction
 from environment.environment import Environment
 from policy.policy import Policy
 
 
-class DeepQNetwork:
+class QLearning:
     def __init__(
         self,
         environment: Environment,

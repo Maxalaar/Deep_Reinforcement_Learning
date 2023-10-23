@@ -28,11 +28,11 @@ class GridWorld(Environment):
         self._render_configuration: Optional[Dict] = render_configuration
 
         self._action_to_direction: Dict[int, np.ndarray] = {
-            0: np.array([0, 0]),
-            1: np.array([1, 0]),
-            2: np.array([0, 1]),
-            3: np.array([-1, 0]),
-            4: np.array([0, -1]),
+            0: np.array([1, 0]),
+            1: np.array([0, 1]),
+            2: np.array([-1, 0]),
+            3: np.array([0, -1]),
+            # 4: np.array([0, 0]),
         }
         self.action_space: spaces.Discrete = spaces.Discrete(len(self._action_to_direction))
 
@@ -62,7 +62,7 @@ class GridWorld(Environment):
     def _set_initialisation(self):
         self._current_step = 0
         self._agent_position = np.random.randint(self._minimum_value_bounds, self._maximum_value_bounds+1, size=2)
-        self._target_position = self._maximum_value_bounds  # np.random.randint(self._minimum_value_bounds, self._maximum_value_bounds+1, size=2)
+        self._target_position = np.random.randint(self._minimum_value_bounds, self._maximum_value_bounds+1, size=2)
 
     def observation(self):
         return {
