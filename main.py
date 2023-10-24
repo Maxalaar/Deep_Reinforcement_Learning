@@ -12,7 +12,7 @@ from policy.random import Random
 from policy.max_state_action_function import MaxStateActionFunction
 
 if __name__ == '__main__':
-    map_size = (4, 4)
+    map_size = (3, 3)
     max_steps = 10
     render_configuration = {
         'window_size': ([element * 130 for element in map_size]),
