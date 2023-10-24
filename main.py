@@ -12,7 +12,7 @@ from policy.random import Random
 from policy.max_state_action_function import MaxStateActionFunction
 
 if __name__ == '__main__':
-    map_size = (3, 3)
+    map_size = (4, 4)
     max_steps = 10
     render_configuration = {
         'window_size': ([element * 130 for element in map_size]),
@@ -30,7 +30,7 @@ if __name__ == '__main__':
 
     # Neural Network Architecture creation
     architecture = DenseNeuralNetwork(
-        3,
+        2,
         10,
     )
 
@@ -71,7 +71,7 @@ if __name__ == '__main__':
 
     # Learning
     q_learning.learning(
-        6000,
+        35000,
         1,
         1,
     )
